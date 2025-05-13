@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>What's in My Neighborhood - demo</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css" />
+    <link rel="stylesheet" href="css/map.css" />
+
+    <script src="https://js.arcgis.com/4.30/"></script>
+    <script type="text/javascript" src="js/check_ie.js"></script>
+    <script type="text/javascript" src="js/wimn-map.js"></script>
+
+    <style>
+        input:focus-visible {
+		outline: 3px solid blue;
+		border-radius: 3px;
+		}
+		button:focus-visible {
+		outline: 3px solid blue;
+		border-radius: 3px;
+		}
+        div:focus-visible {
+		outline: 3px solid blue;
+		border-radius: 3px;
+		}
+        ul{
+            list-style-type: none; 
+        }
+    </style>
+
+    <script>
+        let myMap2 = new SearchMap();
+		myMap2.viewDivId = "viewDiv";
+		myMap2.loadMap();
+
+        function maskDiv(){
+				let maskDiv = document.getElementById('body-main');
+				if (maskDiv.style.opacity == 0.1){
+					maskDiv.style.cssText = "opacity:1;";
+				} else {
+					maskDiv.style.cssText = "opacity:0.1;";
+				};
+			};
+    </script>
+    
+
+  </head>
+  <body>
+    
+    <header class="mainHeader">
+    
+        <img src="img/mpca-logo-white-type-green-m.png" alt="Minnesota Pollution Control Agency Logo"></img>
+        <h1 id="MapTitle">What's in My Neighborhood - an accessibility demo</h1>
+
+    </header> 
+    
+    <main id="body-main">
+
+      <div tabindex="-1" style="height:95%;">
+        
+
+        <div title="Search for regulated activities and cleanup sites in Minnesota." style= "height:100%; width:29vw; float:left">
+
+            <div id="intro" tabindex="0" style="padding: 5px 5px 5px 5px;" >
+
+                <h2>Search for facilities</h2>
+                <p>Find regulated activities and cleanup sites by name or permit number.</p>
+            </div>
+			
+			<form onsubmit="return false;" style="padding: 5px 5px 5px 5px;" >   
+
+                <input type="text" id="searchText" name="WIMN site search" title="Enter your search terms." placeholder="site search" style="padding: 5px 5px 5px 5px;">
+                </input>
+                <div class="btn-block" title="Submit your search terms." style="padding: 10px 5px 5px 5px;">
+                    <button value="Find" id="findBtn">Search</button>
+                </div>
+            </form>
+
+            <div id="results" tabindex="0" style="padding: 5px 5px 5px 5px;" >
+
+                <h2>Search Results</h2>
+                <div id="searchResults" title="Search results"></div>	
+            </div>
+        </div>
+
+        <div id="viewDiv" role="application" title="A map of Minnesota showing search results on top of satellite images. Use the i key to list points of interest." style= "height:100%; width:70vw; float:right"></div>
+
+        <button class="button" style="float:right;" tabindex="-1" onclick="maskDiv()">Add mask</button>
+
+      </div>
+
+  </main>
+  </body>
+</html>
